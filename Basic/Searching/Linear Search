@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int linearSearch(int a[], int n, int val)
+{
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] == val)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int main()
+{
+    int a[100], n, val;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter elements: ";
+    for(int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    cout << "Enter value to search: ";
+    cin >> val;
+
+    int result = linearSearch(a, n, val);
+
+    if(result != -1)
+        cout << "Element found at index " << result;
+    else
+        cout << "Element not found";
+
+    return 0;
+}
