@@ -1,0 +1,31 @@
+include <iostream>
+using namespace std;
+
+int findFirstOne(int a[],int n) {
+  int start = 0,end = n-1;
+  while (start <= end)
+  {
+    int mid = (start+end)/2;
+    if(a[mid] == 0)
+      start = mid+1;
+    else if (mid == 0 || a[mid-1] == 0)
+      return mid;
+    else
+      end = mid-1;
+  }
+return -1;
+}
+int main()
+{
+    int a[] = {0, 0, 0, 0, 1, 1, 1, 1};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    int result = findFirstOne(a, n);
+
+    if (result != -1)
+        cout << "First 1 is at index: " << result;
+    else
+        cout << "1 is not present";
+
+    return 0;
+}
