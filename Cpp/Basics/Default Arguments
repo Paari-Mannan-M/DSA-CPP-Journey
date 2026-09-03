@@ -1,3 +1,5 @@
+//Using sum function:-
+
 #include <iostream>
 using namespace std;
 
@@ -11,4 +13,27 @@ int main() {
 	cout<<sum(10,15)<<endl;//default arguments reads from left to right 
 	cout<<sum(10,15,20)<<endl;
 	cout<<sum(10,15,20,15)<<endl;
+}
+
+//Using Display function:-
+
+#include<iostream>
+using namespace std;
+
+void display(char ="*", int= 1);
+
+int main() {
+	cout<<"No arguments passed"<<endl;
+
+	display("#");
+
+	cout<<"after call"<<endl;
+
+	display("$",5);
+}
+
+void display(char c,int n){
+	for(int i=1;i<=n;i++){
+		cout<<c;
+	}
 }
