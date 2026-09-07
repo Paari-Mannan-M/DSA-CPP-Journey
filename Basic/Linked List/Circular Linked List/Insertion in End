@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+void insertEnd(Node*& head, int val) {
+    Node* newNode = new Node;
+    newNode->data = val;
+
+    if (head == NULL) {
+        head = newNode;
+        newNode->next = head;
+    }
+    else {
+        Node* temp = head;
+
+        while (temp->next != head) {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+        newNode->next = head;
+    }
+}
+
+void display(Node* head) {
+    if (head == NULL) {
+        cout << "List is empty";
+    }
+    else {
+        Node* temp = head;
+
+        do {
+            cout << temp->data << " ";
+            temp = temp->next;
+        } while (temp != head);
+    }
+}
+
+int main() {
+    Node* head = NULL;
+
+    insertEnd(head, 10);
+    insertEnd(head, 20);
+    insertEnd(head, 30);
+
+    cout << "Circular Linked List: ";
+    display(head);
+}
