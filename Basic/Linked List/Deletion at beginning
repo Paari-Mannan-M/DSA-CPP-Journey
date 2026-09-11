@@ -36,4 +36,7 @@ int main() {
 
     cout << "\nAfter: ";
     display(head);
+
+    return 0;
+
 }
