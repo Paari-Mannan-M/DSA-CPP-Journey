@@ -83,4 +83,7 @@ int main() {
 
     cout << "\nAfter deletion: ";
     display(head);
+
+    return 0;
+
 }
