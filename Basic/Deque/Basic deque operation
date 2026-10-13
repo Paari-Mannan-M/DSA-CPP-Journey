@@ -1,0 +1,199 @@
+
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+class Deque {
+private:
+    int arr[MAX];
+    int front, rear;
+
+public:
+    Deque() {
+        front = -1;
+        rear = -1;
+    }
+
+    bool isEmpty() {
+        return front == -1;
+    }
+
+    bool isFull() {
+        return (rear + 1) % MAX == front;
+    }
+
+    void insertFront(int value) {
+        if (isFull()) {
+            cout << "Deque Overflow!\n";
+            return;
+        }
+
+        if (isEmpty()) {
+            front = rear = 0;
+        } else {
+            front = (front - 1 + MAX) % MAX;
+        }
+
+        arr[front] = value;
+        cout << value << " inserted at front.\n";
+    }
+
+    void insertRear(int value) {
+        if (isFull()) {
+            cout << "Deque Overflow!\n";
+            return;
+        }
+
+        if (isEmpty()) {
+            front = rear = 0;
+        } else {
+            rear = (rear + 1) % MAX;
+        }
+
+        arr[rear] = value;
+        cout << value << " inserted at rear.\n";
+    }
+
+    void deleteFront() {
+        if (isEmpty()) {
+            cout << "Deque Underflow!\n";
+            return;
+        }
+
+        cout << "Deleted element: " << arr[front] << endl;
+
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % MAX;
+        }
+    }
+
+    void deleteRear() {
+        if (isEmpty()) {
+            cout << "Deque Underflow!\n";
+            return;
+        }
+
+        cout << "Deleted element: " << arr[rear] << endl;
+
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            rear = (rear - 1 + MAX) % MAX;
+        }
+    }
+
+    void peekFront() {
+        if (isEmpty()) {
+            cout << "Deque is empty.\n";
+        } else {
+            cout << "Front element: " << arr[front] << endl;
+        }
+    }
+
+    void peekRear() {
+        if (isEmpty()) {
+            cout << "Deque is empty.\n";
+        } else {
+            cout << "Rear element: " << arr[rear] << endl;
+        }
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Deque is empty.\n";
+            return;
+        }
+
+        cout << "Deque elements: ";
+        int i = front;
+
+        while (true) {
+            cout << arr[i] << " ";
+
+            if (i == rear)
+                break;
+
+            i = (i + 1) % MAX;
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    Deque dq;
+    int choice, value;
+
+    do {
+        cout << "\n--- DEQUE MENU ---\n";
+        cout << "1. Insert Front\n";
+        cout << "2. Insert Rear\n";
+        cout << "3. Delete Front\n";
+        cout << "4. Delete Rear\n";
+        cout << "5. Peek Front\n";
+        cout << "6. Peek Rear\n";
+        cout << "7. Display\n";
+        cout << "8. Check Empty\n";
+        cout << "9. Check Full\n";
+        cout << "0. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Enter value: ";
+            cin >> value;
+            dq.insertFront(value);
+            break;
+
+        case 2:
+            cout << "Enter value: ";
+            cin >> value;
+            dq.insertRear(value);
+            break;
+
+        case 3:
+            dq.deleteFront();
+            break;
+
+        case 4:
+            dq.deleteRear();
+            break;
+
+        case 5:
+            dq.peekFront();
+            break;
+
+        case 6:
+            dq.peekRear();
+            break;
+
+        case 7:
+            dq.display();
+            break;
+
+        case 8:
+            cout << (dq.isEmpty() ? "Deque is empty\n"
+                                  : "Deque is not empty\n");
+            break;
+
+        case 9:
+            cout << (dq.isFull() ? "Deque is full\n"
+                                 : "Deque is not full\n");
+            break;
+
+        case 0:
+            cout << "Exiting program.\n";
+            break;
+
+        default:
+            cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 0);
+
+    return 0;
+}
