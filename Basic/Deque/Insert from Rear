@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+int arr[MAX];
+int front = -1, rear = -1;
+
+void insertRear(int value) {
+    if ((rear + 1) % MAX == front) {
+        cout << "Deque Overflow\n";
+        return;
+    }
+
+    if (front == -1) {
+        front = rear = 0;
+    } else {
+        rear = (rear + 1) % MAX;
+    }
+
+    arr[rear] = value;
+}
+
+void display() {
+    if (front == -1) {
+        cout << "Deque is empty\n";
+        return;
+    }
+
+    int i = front;
+    while (true) {
+        cout << arr[i] << " ";
+        if (i == rear)
+            break;
+        i = (i + 1) % MAX;
+    }
+    cout << endl;
+}
+
+int main() {
+    insertRear(10);
+    insertRear(20);
+    insertRear(30);
+
+    display();
+
+    return 0;
+}
