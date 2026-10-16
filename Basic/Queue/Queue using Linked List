@@ -1,0 +1,128 @@
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+class Queue {
+    Node* front;
+    Node* rear;
+
+public:
+    Queue() {
+        front = rear = NULL;
+    }
+
+    bool isEmpty() {
+        return front == NULL;
+    }
+
+    void enqueue(int value) {
+        Node* newNode = new Node;
+
+        newNode->data = value;
+        newNode->next = NULL;
+
+        if (isEmpty()) {
+            front = rear = newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+
+        cout << value << " inserted\n";
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue Underflow\n";
+            return;
+        }
+
+        Node* temp = front;
+
+        cout << "Deleted: " << temp->data << endl;
+
+        front = front->next;
+
+        if (front == NULL) {
+            rear = NULL;
+        }
+
+        delete temp;
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty\n";
+            return;
+        }
+
+        Node* temp = front;
+
+        cout << "Queue: ";
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+
+        cout << endl;
+    }
+
+    ~Queue() {
+        while (!isEmpty()) {
+            Node* temp = front;
+            front = front->next;
+            delete temp;
+        }
+        rear = NULL;
+    }
+};
+
+int main() {
+    Queue q;
+    int choice, value;
+
+    do {
+        cout << "\n1. Enqueue\n";
+        cout << "2. Dequeue\n";
+        cout << "3. Display\n";
+        cout << "4. Check Empty\n";
+        cout << "0. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Enter value: ";
+            cin >> value;
+            q.enqueue(value);
+            break;
+
+        case 2:
+            q.dequeue();
+            break;
+
+        case 3:
+            q.display();
+            break;
+
+        case 4:
+            cout << (q.isEmpty() ? "Queue is empty\n"
+                                 : "Queue is not empty\n");
+            break;
+
+        case 0:
+            cout << "Program ended\n";
+            break;
+
+        default:
+            cout << "Invalid choice\n";
+        }
+    } while (choice != 0);
+
+    return 0;
+}
