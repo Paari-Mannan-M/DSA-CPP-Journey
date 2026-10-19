@@ -1,0 +1,68 @@
+
+#include <iostream>
+using namespace std;
+
+#define SIZE 5
+
+int dq[SIZE];
+int front = -1, rear = -1;
+
+void insert(int x) {
+    if (rear == SIZE - 1) {
+        cout << "Overflow\n";
+        return;
+    }
+
+    if (front == -1)
+        front = 0;
+
+    dq[++rear] = x;
+}
+
+void deleteFront() {
+    if (front == -1) {
+        cout << "Underflow\n";
+        return;
+    }
+
+    cout << "Deleted: " << dq[front++] << endl;
+
+    if (front > rear)
+        front = rear = -1;
+}
+
+void deleteRear() {
+    if (front == -1) {
+        cout << "Underflow\n";
+        return;
+    }
+
+    cout << "Deleted: " << dq[rear--] << endl;
+
+    if (front > rear)
+        front = rear = -1;
+}
+
+void display() {
+    if (front == -1) {
+        cout << "Empty\n";
+        return;
+    }
+
+    for (int i = front; i <= rear; i++)
+        cout << dq[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    insert(10);
+    insert(20);
+    insert(30);
+
+    display();
+    deleteFront();
+    deleteRear();
+    display();
+
+    return 0;
+}
