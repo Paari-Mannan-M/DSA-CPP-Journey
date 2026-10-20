@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+#define SIZE 3
+
+int q[SIZE];
+int front = -1, rear = -1;
+
+void enqueue(int x) {
+    if (rear == SIZE - 1) {
+        cout << "Queue Overflow\n";
+        return;
+    }
+
+    if (front == -1)
+        front = 0;
+
+    q[++rear] = x;
+    cout << x << " inserted\n";
+}
+
+void dequeue() {
+    if (front == -1 || front > rear) {
+        cout << "Queue Underflow\n";
+        return;
+    }
+
+    cout << q[front] << " deleted\n";
+    front++;
+
+    if (front > rear)
+        front = rear = -1;
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+
+    enqueue(40);  // Overflow
+
+    dequeue();
+    dequeue();
+    dequeue();
+
+    dequeue();    // Underflow
+
+    return 0;
+}
