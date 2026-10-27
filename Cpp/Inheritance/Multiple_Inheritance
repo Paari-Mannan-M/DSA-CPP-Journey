@@ -1,0 +1,46 @@
+#include <iostream>
+#include<string>
+using namespace std;
+
+class pel
+{
+protected:
+    string sub_name="PEL134";
+    string peltime="10:10";
+};
+
+class cse
+{
+protected:
+    string subname="CSE202";
+    string csetime="09:20";
+};
+
+class student:public pel,public cse
+{
+    string name;
+    int regno;
+public:
+    void get_data(){
+        getline(cin,name);
+        cin>>regno;
+    }
+
+    void display(){
+        cout<<"student name:"<<name<<"\n";
+        cout<<"reg no:"<<regno<<"\n";
+        cout<<"class 1:"<<subname<<"\n";
+        cout<<"time:"<<csetime<<"\n";
+        cout<<"class 2:"<<sub_name<<"\n";
+        cout<<"time:"<<peltime<<"\n";
+    }
+};
+
+int main(){
+    student s1;
+    s1.get_data();
+    s1.display();
+
+    return 0;
+
+}
