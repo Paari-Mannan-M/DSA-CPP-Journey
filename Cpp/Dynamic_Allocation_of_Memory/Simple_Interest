@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	float *p = NULL;
+	p = new float;
+	float *r = NULL;
+	r = new float;
+	float *t = NULL;
+	t = new float;
+	float *sI = NULL;
+	sI = new float;
+	
+	if(p==NULL||r==NULL||t==NULL||sI==NULL)
+	{
+		cout<<"\nMemory allocation failure";
+		exit(1);
+	}
+	cout<<"\nEnter principle,rate and time:";
+	cin>>*p>>*r>>*t;
+	
+	*sI = (*p * *r * *t) / 100;
+	
+	cout<<*sI<<endl;
+	
+	delete p;
+	delete r;
+	delete t;
+	delete sI;
+	
+	return 0;
+
+}
